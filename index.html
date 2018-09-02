@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>bubbles</title>
+		<style type="text/css">
+			/*put code here*/
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="400" style="border: 1px solid #000000;" ></canvas>
+
+
+		<script type="text/javascript" src="bubble.js" ></script>
+		<script type="text/javascript">
+			// canvas declaration
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+
+			// container for the main loop
+			var loop;
+
+			// container for the bubble objects
+			var bubbles = [];
+
+			var bubble_count = 200;
+
+			// declaration for bubble object(s)
+			for(let i = 0; i < bubble_count; i++) {
+				bubbles[i] = new Bubble();
+			}
+
+
+			// main loop
+			function run() {
+				ctx.fillStyle = "#000000";
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+				// bubble code
+				for(let i = 0; i < bubbles.length; i++) {
+					bubbles[i].draw();
+					bubbles[i].move();
+					bubbles[i].check_border();
+				}
+
+			}
+
+			// responsible for running the run() function in an infinite loop
+			loop = setInterval(run, 10);
+
+		</script>
+	</body>
+</html>
